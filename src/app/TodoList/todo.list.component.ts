@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'todo-list',
@@ -6,5 +6,21 @@ import { Component } from "@angular/core";
     styleUrls: ['todo.list.component.scss']
 })
 export class TodoListComponent {
+    title: string;
+    description: string;
+    todos: {title: string, description: string, createdAt: Date}[];
 
+    constructor() {
+        this.title = null;
+        this.description = null;
+        this.todos = [];
+    }
+
+    onCreateTodo() {
+        this.todos.push({
+            title: this.title,
+            description: this.description,
+            createdAt: new Date()
+        });
+    }
 }

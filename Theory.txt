@@ -47,8 +47,16 @@ Event Binding:
     -> ([]), ([ngModel]); //dual binding 
 
 Componet InDepth
+    -> selector, template and styles, providers.
+    -> inputs, outputs
+    -> ViewChild,Content Child
+        -> <ng-content></ng-content>
+    -> Renderer2
+    -> shadow DOM. ViewEncapsulation.Emulate
+    -> Componet Class properties, methods.
+    -> private, public methods
     -> life cycle methods
-        -> ngOnChanges() -> when angular resets data bound properties.
+        **-> ngOnChanges() -> when angular resets data bound properties.
         ***-> ngOnInit() -> Initialize the directive/component, and set Input properties.
         -> ngDoCheck() -> Do changes which angular can't do on  its own, Triggers sub cycles.
             -> ngAfterContentInit() -> after angular projects external content.[html, css etc]
@@ -56,14 +64,6 @@ Componet InDepth
             *-> ngAfterViewInit() -> Angular initializes the component's views and child views.
             -> ngAfterViewChecked() -> Angular checks the component's views and child views.
         ***-> ngOnDestroy() -> Cleanup before angular destroys the component.
-    
-    -> selector, template and styles, providers.
-    -> inputs, outputs
-    -> ViewChild
-    -> Renderer2
-    -> shadow DOM.
-    -> Componet Class properties, methods.
-    -> private, public methods
     -> Vs Directives
 
 Understanding Observable from RXjs.
