@@ -24,7 +24,144 @@ New Modules: Checklist
     -> export all in module file
     -> import in main module
 
+Genrating components with CLI
+    -> ng genrate service {relative path from app}
+        -> ng g s TodoList/Services/TodoList
+    
+    -> ng genrate component {relative path from app}
+        -> ng g c TodoList/TodoList
+        -> will add html,cs and ts files and refrences in main module
 
+    -> other Commands 
+        -> ng g pipe {name}
+        -> ng g directive {name}
+        -> ng g class  {name}
+        -> ng g guard  {name}
+        -> ng g interface  {name}
+        -> ng g enum  {name}
+        -> ng g module  {name}
 
+Event Binding: 
+    -> (), (click) = () => {};
+    -> [], [disabled] = false;
+    -> ([]), ([ngModel]); //dual binding 
+
+Componet InDepth
+    -> life cycle methods
+        -> ngOnChanges() -> when angular resets data bound properties.
+        ***-> ngOnInit() -> Initialize the directive/component, and set Input properties.
+        -> ngDoCheck() -> Do changes which angular can't do on  its own, Triggers sub cycles.
+            -> ngAfterContentInit() -> after angular projects external content.[html, css etc]
+            -> ngAfterContentChecked() -> after angular checks external content.
+            *-> ngAfterViewInit() -> Angular initializes the component's views and child views.
+            -> ngAfterViewChecked() -> Angular checks the component's views and child views.
+        ***-> ngOnDestroy() -> Cleanup before angular destroys the component.
+    
+    -> selector, template and styles, providers.
+    -> inputs, outputs
+    -> ViewChild
+    -> Renderer2
+    -> shadow DOM.
+    -> Componet Class properties, methods.
+    -> private, public methods
+    -> Vs Directives
+
+Understanding Observable from RXjs.
+        -> Observable subscribe, unsubscribe and retry.
+        -> vs Promise.
+
+Routing Indepth:
+    -> RouterModule.
+    -> Routes[], path ,fullPath, redirectTo
+    -> Gaurds
+        -> CanActivate;
+            -> canActivate : Gaurd in Routes[] object.
+        -> ActivatedRouteSnapshot;
+        -> RouterStateSnapshot;
+        -> returns Observable<boolean> || Promise<boolean> || boolean;
+ 
+Structuring Modular Application.
+    -> spliting into modules.
+    -> lazy load vs preload
+
+Forms InDepth
+    -> Recative vs Template forms.
+    -> Template Driven forms.
+        -> import FormsModule.
+        -> ngModule.
+        -> ngSubmit
+        -> understanding ElementRef, ViewChild. -> use Renderer2 when possible better optimized.
+        -> form states.
+        -> Validations [required, minlength, email, pattern, etc].
+    -> Reactive Forms
+        -> FormGroup, FormControl, Validators.
+        -> FormGroup vs FormBuilder.
+        -> Manual error check for validations.
+        -> Easier to do business validations.
+        -> Pick what to submit.
+        -> subscribe valueChanges, stateChanges on form object
+
+Directives InDepth
+    -> element vs structural derectives.
+    -> no more html templates.
+    -> build custom validators for forms.
+    -> Life Cycle methods.
+        -> ngOnInit()
+        -> ngDestroy()
+    -> element, attribute derectives.
+    -> Structural derectives.
+        -> examples *ngFor, *ngIf etc
+        -> understanding <ng-template></ng-template>
+        -> building a Structural derective.
+
+Services Indepth 
+    -> Interface Models
+        -> Using model objects.
+    -> just a TS class at its core.
+    -> Shared resource, Static(module) vs Dynamic(component).
+    -> why @Injectable()
+    -> eleminiates the need for Input and Output.
+    -> prefered layering of http services.
+
+Http, HttpClient InDepth
+    -> Http
+        -> import HttpModule from '@angular/http'
+        -> subscribe
+        -> map(response => response.json()) util from rxjs.
+        -> get, post, put, delete
+        -> Header, RequestOptions, UrlRequestParams from '@angular/http'
+            -> const header = new Header();
+                header.set(key, value);
+
+            -> const searchParams = new UrlRequestParams();
+                searchParams.set(key, value);
+
+            -> const options = new RequestOptions();
+               options = {
+                   header: header,
+                   search: searchParams
+               }
+            
+            -> this.http.get(url, options); || this.http.post(url, data, options);
+    
+    -> HttpClient part of angular 5 - advanced http support.
+        -> import HttpClient from '@angular/common/http';
+        -> vs Http
+        -> Support for Interceptors.
+        -> HttpRequest, HttpParams, Interface Interceptors.
+        -> create request from scratch.
+        -> HTTP_INTERCEPTORS, multi and InterceptorClass.
+        -> map responces to TS Models.
+            -> this.httpClient.get<{[s: string]: boolean}>(url, options).map(responce => return modified).subscribe(modified => {
+
+            }, error => {
+
+            });
+
+Pipes InDepth
+    -> Transform UI values.
+        -> uppercase, lowercase etc.
+        -> understanding async pipe.
+        -> custom pipes
 
 
