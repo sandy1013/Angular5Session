@@ -1,25 +1,5 @@
 <section class="todolist container"> 
-    <div class="col">
-        <div class="form-group">
-            <label for="title"><b>Title:</b></label>
-            <input type="text" class="form-control" id="title" [(ngModel)]="title" autocomplete="off">
-        </div>
-        <div class="form-group">
-            <label for="description"><b>Description:</b></label>
-            <textarea class="form-control" id="description"  [(ngModel)]="description" autocomplete="off"></textarea>
-        </div>
-        <button type="button" class="btn btn-primary" (click)="onCreateTodo()">Create Todo</button>
-    </div>
-
+    <todo-editor (onTodo)="onCreateTodo($event)"></todo-editor>
     <br/>
-
-    <div class="col">
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let todo of todos">
-                <p class="title">{{todo.title}}, <span class="">{{todo.createdAt | date:'EEE, d/M/yyyy, HH:mm a'}}</span></p>
-                <hr/>
-                <p class="description">{{todo.description}}</p>
-            </li>
-        </ul>
-    </div>
+   <todo-list-item [todos]="todos"></todo-list-item>
 </section>
