@@ -1,0 +1,30 @@
+Angular CLI - Command Line Interfase to setup and maintain Angular Application.
+    - ng serve - active deployment server
+    - ng build - create a build for production/test environments
+    - ng genrate - used to genrate components, services etc...
+    - ng test - execute unit test cases.
+
+Angular Code Structure:
+
+-> tsconfig, tslint and pacakage scripts
+-> src - main source folder
+-> src/app.main.ts - setup application config like environment variables and application entry point(Bootstrap entry module).
+-> src/app//{modulename}/app.module.ts - Angular Module can be multiple.
+
+-> src/app/{modulename}/{componentname}/{appname}.{componentname}.component.ts //standard format for component definitions.
+-> src/app/{modulename}/{componentname}/services/{appname}.{servicename}.service.ts //standard format for component service definitions.
+
+-> src/app/shared/{services} || {gaurds} || {derectives} etc // for reuaseble cmponents across modules
+
+New Modules: Checklist
+    -> setup module.ts
+    -> setup routes.ts
+    -> add router outlet
+    -> create components, services etc
+    -> export all in module file
+    -> import in main module
+
+
+
+
+
