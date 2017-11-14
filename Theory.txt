@@ -175,6 +175,11 @@ Routing Indepth:
         -> ActivatedRouteSnapshot;
         -> RouterStateSnapshot;
         -> returns Observable<boolean> || Promise<boolean> || boolean;
+Pipes InDepth
+    -> Transform UI values.
+        -> uppercase, lowercase etc.
+        -> understanding async pipe.
+        -> custom pipes
 Forms InDepth
     -> Recative vs Template forms.
     -> Template Driven forms.
@@ -191,14 +196,6 @@ Forms InDepth
         -> Easier to do business validations.
         -> Pick what to submit.
         -> subscribe valueChanges, stateChanges on form object
-
-Pipes InDepth
-    -> Transform UI values.
-        -> uppercase, lowercase etc.
-        -> understanding async pipe.
-        -> custom pipes
-
-
 
 Http, HttpClient InDepth
     -> Http
@@ -234,6 +231,7 @@ Http, HttpClient InDepth
             }, error => {
 
             });
+    -> async pipe for both observables and promises
 
 Animations
 

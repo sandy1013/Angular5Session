@@ -16,6 +16,7 @@ import { IfNotDirective } from './TodoList/TodoListItem/Directives/todo.ifnot.di
 import { TodoLoggingService } from './Shared/Services/todo.logging.service';
 import { TodoCommunicationService } from './TodoList/Services/todo.communication.service';
 
+import { TitlePipe } from './Shared/Pipes/todo.title.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TodoCommunicationService } from './TodoList/Services/todo.communication
     TodoListItemComponent,
     ListHoverDirective,
     IfNotDirective,
-    CompletedListComponent
+    CompletedListComponent,
+    TitlePipe
   ],
   imports: [
     BrowserModule,
