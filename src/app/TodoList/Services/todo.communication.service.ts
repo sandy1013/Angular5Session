@@ -1,10 +1,13 @@
 import { TodoSaveModel } from "../Models/todo.model";
 import { TodoLoggingService } from "../../Shared/Services/todo.logging.service";
 import { Injectable } from "@angular/core";
+import { Subscription } from "rxjs/Subscription";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class TodoCommunicationService {
     todos: TodoSaveModel[];
+    selectedTodo = new Subject();
     
     constructor(private logging: TodoLoggingService) {
         this.logging.log("Initilized logging service.");
@@ -13,6 +16,14 @@ export class TodoCommunicationService {
             description: 'Test Description',
             createdAt: new Date()
         }]
+
+        this.selectedTodo.subscribe((data: {model: TodoSaveModel, add: boolean}) => {
+            if (data.add) {
+                this.addTodo(data.model);
+            } else {
+                this.deleteTodo(data.model);
+            }
+        });
     }
 
     addTodo(todo: TodoSaveModel) {

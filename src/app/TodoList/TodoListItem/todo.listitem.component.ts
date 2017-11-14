@@ -13,6 +13,10 @@ export class TodoListItemComponent {
     constructor(private todoCommunicationService: TodoCommunicationService) {}
 
     onListItemClick() {
-        this.todoCommunicationService.deleteTodo(this.todo);
+        this.todoCommunicationService.selectedTodo.next({
+            model: this.todo,
+            add: false
+        });
+        //this.todoCommunicationService.deleteTodo(this.todo);
     };
 }

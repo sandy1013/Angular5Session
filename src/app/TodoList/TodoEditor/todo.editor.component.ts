@@ -15,11 +15,20 @@ export class TodoEditorComponent {
 
     onCreateTodo() {
         if (this.title.nativeElement.value && this.description.nativeElement.value) {
-            this.todoCommunicationService.addTodo({
-                'title': this.title.nativeElement.value,
-                'description': this.description.nativeElement.value,
-                'createdAt': new Date()
+            this.todoCommunicationService.selectedTodo.next({
+                model: {
+                    'title': this.title.nativeElement.value,
+                    'description': this.description.nativeElement.value,
+                    'createdAt': new Date()
+                },
+                add: true
             });
+
+            // this.todoCommunicationService.addTodo({
+            //     'title': this.title.nativeElement.value,
+            //     'description': this.description.nativeElement.value,
+            //     'createdAt': new Date()
+            // });
         } else {
             console.log("Fill all fields.");
         }
