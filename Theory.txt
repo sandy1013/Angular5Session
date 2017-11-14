@@ -84,6 +84,9 @@ Directives InDepth
         -> examples *ngFor, *ngIf etc
         -> understanding <ng-template></ng-template>
         -> building a Structural derective.
+        -> TemplateRef, ViewContainerRef
+
+    -> [ngSwitch], *ngSwitchCase="", *ngSwitchDefault
 
 Services Indepth and Dependency Injection
     -> Interface Models
@@ -233,7 +236,7 @@ Http, HttpClient InDepth
             });
 
 Animations
-    -> Trigger,State,Transition, Style, Animate
+    -> Trigger,State,Transition, Style, Animate, Keyframes array of styles, group transitions to excecute sync.
     -> @{Triggername} = {state}
     -> trigger('triggername', [
         state('statename',[
@@ -243,6 +246,7 @@ Animations
              -> accepts a array f animations.
         ])
     ]);
+
 Structuring Modular Application.
     -> spliting into modules.
     -> lazy load vs preload

@@ -9,12 +9,17 @@ import { TodoListComponent } from './TodoList/todo.list.component';
 import { TodoEditorComponent } from './TodoList/TodoEditor/todo.editor.component';
 import { TodoListItemComponent } from './TodoList/TodoListItem/todo.listitem.component';
 
+import { ListHoverDirective } from './TodoList/TodoListItem/Directives/todo.listhover.directive';
+import { IfNotDirective } from './TodoList/TodoListItem/Directives/todo.ifnot.directive';
+
 @NgModule({
   declarations: [
     MainComponent,
     TodoListComponent,
     TodoEditorComponent,
-    TodoListItemComponent
+    TodoListItemComponent,
+    ListHoverDirective,
+    IfNotDirective
   ],
   imports: [
     BrowserModule,
