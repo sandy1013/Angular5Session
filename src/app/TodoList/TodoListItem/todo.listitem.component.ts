@@ -1,4 +1,6 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { TodoSaveModel, TodoModel } from '../Models/todo.model';
+import { TodoCommunicationService } from '../Services/todo.communication.service';
 
 @Component({
     selector: 'todo-list-item',
@@ -6,10 +8,11 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
     styleUrls: ['todo.listitem.component.scss']
 })
 export class TodoListItemComponent {
-    @Input() todo: {title: string, description: string, createdAt: Date};
-    @Output() onDelete = new EventEmitter<{title: string, description: string, createdAt: Date}>();
+    @Input() todo: TodoSaveModel;
+
+    constructor(private todoCommunicationService: TodoCommunicationService) {}
 
     onListItemClick() {
-        this.onDelete.emit(this.todo);
+        this.todoCommunicationService.deleteTodo(this.todo);
     };
 }

@@ -12,6 +12,9 @@ import { TodoListItemComponent } from './TodoList/TodoListItem/todo.listitem.com
 import { ListHoverDirective } from './TodoList/TodoListItem/Directives/todo.listhover.directive';
 import { IfNotDirective } from './TodoList/TodoListItem/Directives/todo.ifnot.directive';
 
+import { TodoLoggingService } from './Shared/Services/todo.logging.service';
+import { TodoCommunicationService } from './TodoList/Services/todo.communication.service';
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -26,7 +29,7 @@ import { IfNotDirective } from './TodoList/TodoListItem/Directives/todo.ifnot.di
     FormsModule,
     MainRouter
   ],
-  providers: [],
+  providers: [TodoLoggingService, TodoCommunicationService],
   bootstrap: [MainComponent]
 })
 export class MainModule { }

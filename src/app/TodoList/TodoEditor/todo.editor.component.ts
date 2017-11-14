@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { TodoSaveModel, TodoModel } from '../Models/todo.model';
+import { TodoCommunicationService } from '../Services/todo.communication.service';
 
 @Component({
     selector: 'todo-editor',
@@ -6,21 +8,17 @@ import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@
     styleUrls: ['todo.editor.component.scss']
 })
 export class TodoEditorComponent {
-    @Output() onTodo = new EventEmitter<{title: string, description: string}>();
-    description: string;
+    @ViewChild('title') title: ElementRef;
+    @ViewChild('description') description: ElementRef;
 
-    @ViewChild('title') title: ElementRef; //gives angular wrapped javascipt element
+    constructor(private todoCommunicationService: TodoCommunicationService) {}
 
-    constructor() {
-        this.description = null;
-    }
-
-    // gives native dom element
-    onCreateTodo(description: HTMLInputElement) {
-        if (this.title.nativeElement.value && description.value) {
-            this.onTodo.emit({
-                title: this.title.nativeElement.value,
-                description: description.value
+    onCreateTodo() {
+        if (this.title.nativeElement.value && this.description.nativeElement.value) {
+            this.todoCommunicationService.addTodo({
+                'title': this.title.nativeElement.value,
+                'description': this.description.nativeElement.value,
+                'createdAt': new Date()
             });
         } else {
             console.log("Fill all fields.");
