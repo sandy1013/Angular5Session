@@ -1,5 +1,5 @@
 <li class="list-group-item" listHover (listDelete)="onListItemClick()" [highlightColor]="'#baeaae'" [textColor]="black">
-    <p class="title">{{todo.title | title}}, <span *ifNot="false">{{todo.createdAt | date:'EEE, d/M/yyyy, HH:mm a'}}</span></p>
+    <p class="title">{{todo.title | title:23}}, <span *ifNot="false">{{todo.createdAt | date:'EEE, d/M/yyyy, HH:mm a'}}</span></p>
     <hr/>
     <p class="description">{{todo.description}}</p>
 </li>
