@@ -44,11 +44,11 @@ Genrating components with CLI
 Event Binding: 
     -> (), (click) = () => {};
     -> [], [disabled] = false;
-    -> ([]), ([ngModel]); //dual binding 
+    -> [()], ([ngModel]); //dual binding 
 
 Componet InDepth
     -> selector, template and styles, providers.
-    -> inputs, outputs
+    -> inputs, outputs, event emitter
     -> ViewChild,Content Child
         -> <ng-content></ng-content>
     -> Renderer2
@@ -91,7 +91,7 @@ Services Indepth and Dependency Injection
     -> just a TS class at its core.
     -> Shared resource, Static(module) vs Dynamic(component).
     -> why @Injectable()
-    -> eleminiates the need for Input and Output.
+    -> eleminiates the need for Input and Output 0n large applications.
     -> prefered layering of http services.
 
 Routing Indepth:
@@ -195,6 +195,8 @@ Pipes InDepth
         -> understanding async pipe.
         -> custom pipes
 
+
+
 Http, HttpClient InDepth
     -> Http
         -> import HttpModule from '@angular/http'
@@ -230,7 +232,17 @@ Http, HttpClient InDepth
 
             });
 
-
+Animations
+    -> Trigger,State,Transition, Style, Animate
+    -> @{Triggername} = {state}
+    -> trigger('triggername', [
+        state('statename',[
+            Style(),
+            Transition('state => state, state <=> state, state => *, * => state, void => *, * => void', animation(200))
+             -> void
+             -> accepts a array f animations.
+        ])
+    ]);
 Structuring Modular Application.
     -> spliting into modules.
     -> lazy load vs preload
