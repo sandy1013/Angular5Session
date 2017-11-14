@@ -1,9 +1,5 @@
-<div class="col">
-    <ul class="list-group">
-        <li class="list-group-item" *ngFor="let todo of todos">
-            <p class="title">{{todo.title}}, <span class="">{{todo.createdAt | date:'EEE, d/M/yyyy, HH:mm a'}}</span></p>
-            <hr/>
-            <p class="description">{{todo.description}}</p>
-        </li>
-    </ul>
-</div>
+<li class="list-group-item">
+    <p class="title">{{todo.title}}, <span class="">{{todo.createdAt | date:'EEE, d/M/yyyy, HH:mm a'}}</span></p>
+    <hr/>
+    <p class="description">{{todo.description}}</p>
+</li>

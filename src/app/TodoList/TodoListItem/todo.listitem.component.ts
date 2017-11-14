@@ -6,5 +6,5 @@ import { Component, Output, Input } from '@angular/core';
     styleUrls: ['todo.listitem.component.scss']
 })
 export class TodoListItemComponent {
-    @Input() todos: {title: string, description: string, createdAt: Date}[];
+    @Input() todo: {title: string, description: string, createdAt: Date};
 }

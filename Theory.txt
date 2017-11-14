@@ -49,12 +49,12 @@ Event Binding:
 Componet InDepth
     -> selector, template and styles, providers.
     -> inputs, outputs, event emitter
+    -> private, public methods
     -> ViewChild,Content Child
         -> <ng-content></ng-content>
     -> Renderer2
     -> shadow DOM. ViewEncapsulation.Emulate
     -> Componet Class properties, methods.
-    -> private, public methods
     -> life cycle methods
         **-> ngOnChanges() -> when angular resets data bound properties.
         ***-> ngOnInit() -> Initialize the directive/component, and set Input properties.

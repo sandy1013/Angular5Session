@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'todo-editor',
@@ -7,19 +7,22 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TodoEditorComponent {
     @Output() onTodo = new EventEmitter<{title: string, description: string}>();
-    title: string;
     description: string;
-    @Output() todos: {title: string, description: string, createdAt: Date}[];
+
+
+    @ViewChild('title') title: ElementRef; //gives angular wrapped javascipt element
 
     constructor() {
-        this.title = null;
         this.description = null;
     }
 
-    onCreateTodo() {
+    // gives native dom element
+    onCreateTodo(description: HTMLInputElement) {   
+        console.log(this.title);
+        console.log(description);
         this.onTodo.emit({
-            title: this.title,
-            description: this.description
+            title: this.title.nativeElement.value,
+            description: description.value
         });
     }
 }
