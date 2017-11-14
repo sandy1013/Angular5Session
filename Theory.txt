@@ -236,6 +236,7 @@ Http, HttpClient InDepth
             });
 
 Animations
+
     -> Trigger,State,Transition, Style, Animate, Keyframes array of styles, group transitions to excecute sync.
     -> @{Triggername} = {state}
     -> trigger('triggername', [
