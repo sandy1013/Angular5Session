@@ -249,6 +249,7 @@ Animations
     ]);
 
 Structuring Modular Application.
+
     -> spliting into modules.
     -> lazy load vs preload
 
