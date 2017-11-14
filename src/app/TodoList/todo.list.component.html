@@ -1,1 +1,5 @@
-Test Todo List
+<section class="todolist container"> 
+    <todo-editor (onTodo)="onCreateTodo($event)"></todo-editor>
+    <br/>
+   <todo-list-item [todos]="todos"></todo-list-item>
+</section>
