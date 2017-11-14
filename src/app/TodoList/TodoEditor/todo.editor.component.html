@@ -1,19 +1,19 @@
 <div class="col">
-    <form (ngSubmit)="onTodoSubmit()" #f="ngForm" novalidate>
-        <div ngModelGroup="todoData">
+    <form (ngSubmit)="onTodoSubmit()" [formGroup]="todoForm" novalidate>
+        <div>
             <div class="form-group">
                 <label for="title"><b>Title:</b></label>
-                <input type="text" class="form-control" id="title" name="title" autocomplete="off" ngModel #title="ngModel" 
-                required>
-                <p class="help-block" *ngIf="title.touched && title.invalid || (formsubmitted && title.pristine)">
+                <input type="text" class="form-control" id="title" autocomplete="off" formControlName="title">
+                <p class="help-block" *ngIf="!errors.valid && errors.controls.title.required">
                     *Title is required.
                 </p>
             </div>
             <div class="form-group">
                 <label for="description"><b>Description:</b></label>
-                <textarea class="form-control" id="description" name="description" autocomplete="off" ngModel #description="ngModel"
-                required></textarea>
-                <p class="help-block" *ngIf="description.touched && description.invalid || (formsubmitted && description.pristine)">
+                <textarea class="form-control" id="description" autocomplete="off" formControlName="description">
+
+                </textarea>
+                <p class="help-block" *ngIf="!errors.valid && errors.controls.description.required">
                     *Description is required.
                 </p>
             </div>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MainRouter } from './todo.main.router';
 
@@ -31,7 +31,7 @@ import { TitlePipe } from './Shared/Pipes/todo.title.pipe';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     MainRouter
   ],
   providers: [TodoLoggingService, TodoCommunicationService],
