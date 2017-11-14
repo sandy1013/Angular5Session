@@ -97,16 +97,7 @@ Services Indepth and Dependency Injection
     -> eleminiates the need for Input and Output 0n large applications.
     -> prefered layering of http services.
 
-Routing Indepth:
-    -> RouterModule.
-    -> Routes[], path ,fullPath, redirectTo
-    -> ngOnInit() -> route.subscribe to (params: Params) and get params[key]
-    -> Gaurds
-        -> CanActivate;
-            -> canActivate : Gaurd in Routes[] object.
-        -> ActivatedRouteSnapshot;
-        -> RouterStateSnapshot;
-        -> returns Observable<boolean> || Promise<boolean> || boolean;
+
 
 Understanding Observable from RXjs.
     -> Observable subscribe, unsubscribe and retry.
@@ -174,7 +165,16 @@ Understanding Observable from RXjs.
             -> map for examples
 
 
-
+Routing Indepth:
+    -> RouterModule.
+    -> Routes[], path ,fullPath, redirectTo
+    -> ngOnInit() -> route.subscribe to (params: Params) and get params[key]
+    -> Gaurds
+        -> CanActivate;
+            -> canActivate : Gaurd in Routes[] object.
+        -> ActivatedRouteSnapshot;
+        -> RouterStateSnapshot;
+        -> returns Observable<boolean> || Promise<boolean> || boolean;
 Forms InDepth
     -> Recative vs Template forms.
     -> Template Driven forms.
