@@ -4,17 +4,17 @@ Angular CLI - Command Line Interfase to setup and maintain Angular Application.
     - ng genrate - used to genrate components, services etc...
     - ng test - execute unit test cases.
 
-Angular Code Structure:
 
--> tsconfig, tslint and pacakage scripts
--> src - main source folder
--> src/app.main.ts - setup application config like environment variables and application entry point(Bootstrap entry module).
--> src/app//{modulename}/app.module.ts - Angular Module can be multiple.
+Angular Code Structure.
+    -> tsconfig, tslint and pacakage scripts
+    -> src - main source folder
+    -> src/app.main.ts - setup application config like environment variables and application entry point(Bootstrap entry module).
+    -> src/app//{modulename}/app.module.ts - Angular Module can be multiple.
 
--> src/app/{modulename}/{componentname}/{appname}.{componentname}.component.ts //standard format for component definitions.
--> src/app/{modulename}/{componentname}/services/{appname}.{servicename}.service.ts //standard format for component service definitions.
+    -> src/app/{modulename}/{componentname}/{appname}.{componentname}.component.ts //standard format for component definitions.
+    -> src/app/{modulename}/{componentname}/services/{appname}.{servicename}.service.ts //standard format for component service definitions.
 
--> src/app/shared/{services} || {gaurds} || {derectives} etc // for reuaseble cmponents across modules
+    -> src/app/shared/{services} || {gaurds} || {derectives} etc // for reuaseble cmponents across modules
 
 New Modules: Checklist
     -> setup module.ts
@@ -66,23 +66,111 @@ Componet InDepth
     -> private, public methods
     -> Vs Directives
 
-Understanding Observable from RXjs.
-        -> Observable subscribe, unsubscribe and retry.
-        -> vs Promise.
+Directives InDepth
+    -> element vs structural derectives.
+    -> no more html templates.
+    -> build custom validators for forms.
+    -> Life Cycle methods.
+        -> ngOnInit()
+        -> ngDestroy()
+    -> element selector: {name}, attribute selector: {[name]} derectives.
+    -> @HostBinding
+        -> @HostBinding('class.open') isOpen = false;
+    -> @HostListener
+        -> @HostListener('click') toggleOpen() {
+            this.isOpen = !this.isOpen;
+        }
+    -> Structural derectives.
+        -> examples *ngFor, *ngIf etc
+        -> understanding <ng-template></ng-template>
+        -> building a Structural derective.
+
+Services Indepth and Dependency Injection
+    -> Interface Models
+        -> Using model objects.
+    -> just a TS class at its core.
+    -> Shared resource, Static(module) vs Dynamic(component).
+    -> why @Injectable()
+    -> eleminiates the need for Input and Output.
+    -> prefered layering of http services.
 
 Routing Indepth:
     -> RouterModule.
     -> Routes[], path ,fullPath, redirectTo
+    -> ngOnInit() -> route.subscribe to (params: Params) and get params[key]
     -> Gaurds
         -> CanActivate;
             -> canActivate : Gaurd in Routes[] object.
         -> ActivatedRouteSnapshot;
         -> RouterStateSnapshot;
         -> returns Observable<boolean> || Promise<boolean> || boolean;
- 
-Structuring Modular Application.
-    -> spliting into modules.
-    -> lazy load vs preload
+
+Understanding Observable from RXjs.
+    -> Observable subscribe, unsubscribe and retry.
+    -> vs Promise.
+    -> success, error, complete states
+        -> .subscribe(success => {
+
+        }, error => {
+
+        }, complete => {
+
+        });
+    -> custom Observable
+        -> import { Observable } from 'rxjs/Observable'; import 'rxjs/RX'; // second import optional but better if included.
+        
+        -> const numbers = Observable.interval(1000); // genrate numbers every second
+            numbers.subscribe((number: number) => {
+                console.log(number);
+            });
+
+        -> const observer = Observable.create((observer: observer) => {
+            observer.next('first pacakage');
+
+            setTimeout(() => {
+                observer.next('second pacakage');
+            }, 2000);
+
+             setTimeout(() => {
+                observer.error('third pacakage');
+            }, 4000);
+
+            setTimeout(() => {
+                observer.completed('third pacakage');
+            }, 6000);
+        });
+        observer.subscribe((data: string) => {
+            console.log(data);
+        }, (error: string) => {
+            console.log(error);
+        },(completed: string) => {
+            console.log(completed);
+        });
+
+        -> observables keep running in backgound always destroy in ngOnDestroy using unsubscribe; 
+            -> import { Subscription } from 'rxjs/Subscription';
+                observer: Subscription;
+                this.observer = Observable.create();
+                ngOnDestroy
+                    ->  this.observer.unsubscribe();
+        
+        -> Subject 
+            -> similar to Observable
+            -> observable and observer at the same time.
+            -> import { Subject } from 'rxjs/Subject';
+                userActivate: Subject;
+
+            -> service.userActivate.next(value); // sends a data pacakage to requesting service. // Observable here
+            -> service..userActivate.subscribe((value: Type) => { // Observer here
+                console.log(value);
+            }); 
+            -> always UNSUBSCRIBE!!!!
+            -> best for cross component communication.
+        
+        -> Go through rxjs for other functionality, user rxjs/RX to unlock all features
+            -> map for examples
+
+
 
 Forms InDepth
     -> Recative vs Template forms.
@@ -101,27 +189,11 @@ Forms InDepth
         -> Pick what to submit.
         -> subscribe valueChanges, stateChanges on form object
 
-Directives InDepth
-    -> element vs structural derectives.
-    -> no more html templates.
-    -> build custom validators for forms.
-    -> Life Cycle methods.
-        -> ngOnInit()
-        -> ngDestroy()
-    -> element, attribute derectives.
-    -> Structural derectives.
-        -> examples *ngFor, *ngIf etc
-        -> understanding <ng-template></ng-template>
-        -> building a Structural derective.
-
-Services Indepth 
-    -> Interface Models
-        -> Using model objects.
-    -> just a TS class at its core.
-    -> Shared resource, Static(module) vs Dynamic(component).
-    -> why @Injectable()
-    -> eleminiates the need for Input and Output.
-    -> prefered layering of http services.
+Pipes InDepth
+    -> Transform UI values.
+        -> uppercase, lowercase etc.
+        -> understanding async pipe.
+        -> custom pipes
 
 Http, HttpClient InDepth
     -> Http
@@ -158,10 +230,9 @@ Http, HttpClient InDepth
 
             });
 
-Pipes InDepth
-    -> Transform UI values.
-        -> uppercase, lowercase etc.
-        -> understanding async pipe.
-        -> custom pipes
+
+Structuring Modular Application.
+    -> spliting into modules.
+    -> lazy load vs preload
 
 
