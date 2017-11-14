@@ -3,10 +3,12 @@ import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { MainComponent } from './todo.main.component';
 
 import { TodoListComponent } from './TodoList/todo.list.component';
+import { CompletedListComponent } from './CompletedList/todo.completed.component';
 
 const mainRoutes: Routes = [
     { path: '', redirectTo: '/todo', pathMatch: 'full' },
-    { path: 'todo', component: TodoListComponent }
+    { path: 'todo', component: TodoListComponent },
+    { path: 'complete', component: CompletedListComponent}
 ];
 
 @NgModule({

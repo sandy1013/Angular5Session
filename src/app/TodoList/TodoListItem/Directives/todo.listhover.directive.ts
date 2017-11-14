@@ -7,13 +7,15 @@ export class ListHoverDirective {
     constructor(private element: ElementRef ,private renderer2: Renderer2) {}
 
     @Input() highlightColor: string;
+    @Input() textColor: string;
+
     @Output() listDelete = new EventEmitter<any>();
 
     @HostBinding('style.color') color: string; 
 
     @HostListener('click') onMosueClick() {
 
-        this.color = "red";
+        this.color = this.textColor;
 
         setTimeout(() => {
             this.listDelete.emit();

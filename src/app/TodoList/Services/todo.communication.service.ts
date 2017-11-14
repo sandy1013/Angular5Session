@@ -7,10 +7,13 @@ import { Subject } from "rxjs/Subject";
 @Injectable()
 export class TodoCommunicationService {
     todos: TodoSaveModel[];
+    completedTodos: TodoSaveModel[];
     selectedTodo = new Subject();
+    completedTodo = new Subject();
     
     constructor(private logging: TodoLoggingService) {
         this.logging.log("Initilized logging service.");
+        this.completedTodos = [];
         this.todos = [{
             title: 'Test Title',
             description: 'Test Description',
@@ -21,9 +24,27 @@ export class TodoCommunicationService {
             if (data.add) {
                 this.addTodo(data.model);
             } else {
-                this.deleteTodo(data.model);
+                this.completeTodo(data.model);
             }
         });
+
+        this.completedTodo.subscribe((data: TodoSaveModel) => {
+            this.deleteFromCompleted(data);
+        });
+    }
+
+    moveToCompleted(todo: TodoSaveModel) {
+        this.completedTodos.push(todo);
+    }
+
+    deleteFromCompleted(todo: TodoSaveModel) {
+        const index = this.completedTodos.findIndex((todo_item) => {
+            return todo_item.createdAt === todo.createdAt;
+        });
+
+        this.completedTodos.splice(index, 1);
+        
+        this.logging.log('Todo at index : ' + index + ' permenently deleted.');
     }
 
     addTodo(todo: TodoSaveModel) {
@@ -31,12 +52,17 @@ export class TodoCommunicationService {
         this.logging.log('New todo created.');
     }
 
-    deleteTodo(todo: TodoSaveModel) {
+    completeTodo(todo: TodoSaveModel) {
         const index = this.todos.findIndex((todo_item) => {
             return todo_item.createdAt === todo.createdAt;
         });
 
-        this.todos.splice(index, 1);
-        this.logging.log('Todo deleted at index : ' + index);
+        if(index > -1) {
+            let todoClone = Object.assign({}, todo);
+            this.moveToCompleted(todoClone);
+            this.todos.splice(index, 1);
+        }
+        
+        this.logging.log('Todo at index : ' + index + ' moved t completed list.');
     }
 }

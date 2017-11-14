@@ -1,0 +1,12 @@
+<section class="todolist container">
+    <div class="col">
+        <p *ngIf="todos.length == 0" style="font-weight:bold;">No completed tasks.</p>
+        <ul class="list-group">
+            <li  *ngFor="let todo of todos" class="list-group-item" listHover (listDelete)="onListItemClick(todo)" [highlightColor]="'#ffe7da'" [textColor]="black">
+                <p class="title">{{todo.title}}, <span>{{todo.createdAt | date:'EEE, d/M/yyyy, HH:mm a'}}</span></p>
+                <hr/>
+                <p class="description">{{todo.description}}</p>
+            </li>
+        </ul>
+    </div>
+</section>

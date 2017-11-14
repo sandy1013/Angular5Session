@@ -8,12 +8,14 @@ import { MainComponent } from './todo.main.component';
 import { TodoListComponent } from './TodoList/todo.list.component';
 import { TodoEditorComponent } from './TodoList/TodoEditor/todo.editor.component';
 import { TodoListItemComponent } from './TodoList/TodoListItem/todo.listitem.component';
+import { CompletedListComponent } from './CompletedList/todo.completed.component';
 
 import { ListHoverDirective } from './TodoList/TodoListItem/Directives/todo.listhover.directive';
 import { IfNotDirective } from './TodoList/TodoListItem/Directives/todo.ifnot.directive';
 
 import { TodoLoggingService } from './Shared/Services/todo.logging.service';
 import { TodoCommunicationService } from './TodoList/Services/todo.communication.service';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { TodoCommunicationService } from './TodoList/Services/todo.communication
     TodoEditorComponent,
     TodoListItemComponent,
     ListHoverDirective,
-    IfNotDirective
+    IfNotDirective,
+    CompletedListComponent
   ],
   imports: [
     BrowserModule,
