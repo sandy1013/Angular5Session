@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { TodoSaveModel, TodoModel } from '../Models/todo.model';
 import { TodoCommunicationService } from '../Services/todo.communication.service';
+import { Form, NgForm } from '@angular/forms';
 
 @Component({
     selector: 'todo-editor',
@@ -8,29 +9,27 @@ import { TodoCommunicationService } from '../Services/todo.communication.service
     styleUrls: ['todo.editor.component.scss']
 })
 export class TodoEditorComponent {
-    @ViewChild('title') title: ElementRef;
-    @ViewChild('description') description: ElementRef;
+    @ViewChild('f') todoForm: NgForm;
+    formsubmitted = false;
+
+    todoData = {
+        title: '',
+        description: ''
+    };
 
     constructor(private todoCommunicationService: TodoCommunicationService) {}
 
-    onCreateTodo() {
-        if (this.title.nativeElement.value && this.description.nativeElement.value) {
+    onTodoSubmit() {
+        this.formsubmitted = true;
+        if (this.todoForm.valid) {
             this.todoCommunicationService.selectedTodo.next({
                 model: {
-                    'title': this.title.nativeElement.value,
-                    'description': this.description.nativeElement.value,
+                    'title': this.todoForm.value.todoData.title,
+                    'description': this.todoForm.value.todoData.description,
                     'createdAt': new Date()
                 },
                 add: true
             });
-
-            // this.todoCommunicationService.addTodo({
-            //     'title': this.title.nativeElement.value,
-            //     'description': this.description.nativeElement.value,
-            //     'createdAt': new Date()
-            // });
-        } else {
-            console.log("Fill all fields.");
         }
     }
 }

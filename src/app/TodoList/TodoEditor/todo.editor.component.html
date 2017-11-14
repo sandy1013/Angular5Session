@@ -1,11 +1,23 @@
 <div class="col">
-    <div class="form-group">
-        <label for="title"><b>Title:</b></label>
-        <input type="text" class="form-control" id="title" autocomplete="off" #title>
-    </div>
-    <div class="form-group">
-        <label for="description"><b>Description:</b></label>
-        <textarea class="form-control" id="description" autocomplete="off" #description></textarea>
-    </div>
-    <button type="button" class="btn btn-primary" (click)="onCreateTodo(description)">Create Todo</button>
+    <form (ngSubmit)="onTodoSubmit()" #f="ngForm" novalidate>
+        <div ngModelGroup="todoData">
+            <div class="form-group">
+                <label for="title"><b>Title:</b></label>
+                <input type="text" class="form-control" id="title" name="title" autocomplete="off" ngModel #title="ngModel" 
+                required>
+                <p class="help-block" *ngIf="title.touched && title.invalid || (formsubmitted && title.pristine)">
+                    *Title is required.
+                </p>
+            </div>
+            <div class="form-group">
+                <label for="description"><b>Description:</b></label>
+                <textarea class="form-control" id="description" name="description" autocomplete="off" ngModel #description="ngModel"
+                required></textarea>
+                <p class="help-block" *ngIf="description.touched && description.invalid || (formsubmitted && description.pristine)">
+                    *Description is required.
+                </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Todo</button>
+        </div>
+    </form>
 </div>
