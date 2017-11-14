@@ -3,7 +3,7 @@
     <br/>
     <div class="col">
         <ul class="list-group">
-           <todo-list-item  *ngFor="let todo of todos" [todo]="todo"></todo-list-item>
+           <todo-list-item  *ngFor="let todo of todos" [todo]="todo" (onDelete)="onDeleteTodo($event)"></todo-list-item>
         </ul>
     </div>
 </section>
