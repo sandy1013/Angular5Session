@@ -1,0 +1,16 @@
+<section>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+        <fieldset>
+            <legend>Login</legend>
+            <div class="form-group">
+                <label for="email" class="form-label">Email: </label>
+                <input type="email" id="email" class="form-control" formControlName="email" />
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Password: </label>
+                <input type="password" id="password" class="form-control" formControlName="password" />
+            </div>
+            <button type="submit" class="btn btn-success">Log In</button>
+        </fieldset>
+    </form>
+</section>
