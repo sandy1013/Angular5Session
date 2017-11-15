@@ -21,7 +21,7 @@ export class MainComponent {
         .subscribe((response: any) => {
             if (response.success) {
                 this.store.deleteAll();
-                this.router.navigate(['login']);
+                this.router.navigate(['/login']);
             }
         }, (err) => {
             console.log(err);

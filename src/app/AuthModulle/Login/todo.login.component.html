@@ -1,0 +1,21 @@
+<section>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" novalidate>
+        <fieldset>
+            <legend>Login</legend>
+            <p class="alert alert-danger" *ngIf="!errors.valid && errors.msg">{{errors.msg}}</p>
+            <div class="form-group">
+                <label for="email" class="form-label">Email: </label>
+                <input type="email" id="email" class="form-control" formControlName="email" />
+                <p *ngIf="!errors.valid && errors.controls.email.required">*Email is required.</p>
+                <p *ngIf="!errors.valid && !errors.controls.email.required && errors.controls.email.email">*Please enter a valid email.</p>
+            </div>
+            <div class="form-group">
+                <label for="password" class="form-label">Password: </label>
+                <input type="password" id="password" class="form-control" formControlName="password" />
+                <p *ngIf="!errors.valid && errors.controls.password.required">*Password is required.</p>
+            </div>
+            <button type="submit" class="btn btn-success">Log In</button>
+            <a routerLink="/register">Sign Up?</a>
+        </fieldset>
+    </form>
+</section>
