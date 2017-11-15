@@ -45,6 +45,11 @@ export class TodoEditorComponent implements OnInit {
             'description': new FormControl(null, [Validators.required])
         });
 
+        this.todoForm.patchValue({
+            title: 'Test Title',
+            description: 'Test Description'
+        });
+
         // this.todoForm.valueChanges.subscribe((value) => {
         //     console.log(value);
         // });
@@ -79,7 +84,8 @@ export class TodoEditorComponent implements OnInit {
                 model: {
                     'title': this.todoForm.value.title,
                     'description': this.todoForm.value.description,
-                    'createdAt': new Date()
+                    'createdAt': new Date(),
+                    '_id': (new Date()).valueOf(),
                 },
                 add: true
             });

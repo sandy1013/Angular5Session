@@ -9,6 +9,7 @@ import { TodoListComponent } from './TodoList/todo.list.component';
 import { TodoEditorComponent } from './TodoList/TodoEditor/todo.editor.component';
 import { TodoListItemComponent } from './TodoList/TodoListItem/todo.listitem.component';
 import { CompletedListComponent } from './CompletedList/todo.completed.component';
+import { TodoDetailComponent } from './TodoDetail/todo.detail.component';
 
 import { ListHoverDirective } from './TodoList/TodoListItem/Directives/todo.listhover.directive';
 import { IfNotDirective } from './TodoList/TodoListItem/Directives/todo.ifnot.directive';
@@ -17,6 +18,7 @@ import { TodoLoggingService } from './Shared/Services/todo.logging.service';
 import { TodoCommunicationService } from './TodoList/Services/todo.communication.service';
 
 import { TitlePipe } from './Shared/Pipes/todo.title.pipe';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { TitlePipe } from './Shared/Pipes/todo.title.pipe';
     ListHoverDirective,
     IfNotDirective,
     CompletedListComponent,
+    TodoDetailComponent,
     TitlePipe
   ],
   imports: [

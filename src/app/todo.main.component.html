@@ -12,8 +12,8 @@
 
     <div class="collapse navbar-collapse" #menu>
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active"><a routerLink="/todo">Todo List</a></li>
-            <li routerLinkActive="active"><a routerLink="/complete">Completed List</a></li>
+            <li routerLinkActive="active" (click)="onMenu(menu)"><a routerLink="/todo">Todo List</a></li>
+            <li routerLinkActive="active" (click)="onMenu(menu)"><a routerLink="/complete">Completed List</a></li>
         </ul>
         <!-- <ul class="nav navbar-nav navbar-right">
             <li><a (click)="onLogout()" ><span class="glyphicon glyphicon-log-out"></span>Log Out</a></li>

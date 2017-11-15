@@ -1,7 +1,8 @@
 export interface TodoSaveModel {
     title: string,
     description: string,
-    createdAt: Date
+    createdAt: Date,
+    _id: number
 };
 
 export interface TodoModel {

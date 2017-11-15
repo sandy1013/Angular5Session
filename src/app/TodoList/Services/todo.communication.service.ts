@@ -14,11 +14,7 @@ export class TodoCommunicationService {
     constructor(private logging: TodoLoggingService) {
         this.logging.log("Initilized logging service.");
         this.completedTodos = [];
-        this.todos = [{
-            title: 'Test Title',
-            description: 'Test Description',
-            createdAt: new Date()
-        }]
+        this.todos = []
 
         this.selectedTodo.subscribe((data: {model: TodoSaveModel, add: boolean}) => {
             if (data.add) {
@@ -39,7 +35,7 @@ export class TodoCommunicationService {
 
     deleteFromCompleted(todo: TodoSaveModel) {
         const index = this.completedTodos.findIndex((todo_item) => {
-            return todo_item.createdAt === todo.createdAt;
+            return todo_item._id === todo._id;
         });
 
         this.completedTodos.splice(index, 1);
@@ -54,7 +50,7 @@ export class TodoCommunicationService {
 
     completeTodo(todo: TodoSaveModel) {
         const index = this.todos.findIndex((todo_item) => {
-            return todo_item.createdAt === todo.createdAt;
+            return todo_item._id === todo._id;
         });
 
         if(index > -1) {

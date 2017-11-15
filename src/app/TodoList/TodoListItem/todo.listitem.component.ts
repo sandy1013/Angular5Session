@@ -1,6 +1,7 @@
 import { Component, Output, Input, EventEmitter } from '@angular/core';
 import { TodoSaveModel, TodoModel } from '../Models/todo.model';
 import { TodoCommunicationService } from '../Services/todo.communication.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'todo-list-item',
@@ -10,13 +11,9 @@ import { TodoCommunicationService } from '../Services/todo.communication.service
 export class TodoListItemComponent {
     @Input() todo: TodoSaveModel;
 
-    constructor(private todoCommunicationService: TodoCommunicationService) {}
+    constructor(private todoCommunicationService: TodoCommunicationService, private router: Router) {}
 
     onListItemClick() {
-        this.todoCommunicationService.selectedTodo.next({
-            model: this.todo,
-            add: false
-        });
-        //this.todoCommunicationService.deleteTodo(this.todo);
+        this.router.navigate(['/detail', false ,this.todo._id]);
     };
 }

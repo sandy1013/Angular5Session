@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { TodoSaveModel } from "../TodoList/Models/todo.model";
 import { TodoCommunicationService } from "../TodoList/Services/todo.communication.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'completed-list',
@@ -10,11 +11,11 @@ import { TodoCommunicationService } from "../TodoList/Services/todo.communicatio
 export class CompletedListComponent {
     todos: TodoSaveModel[];
 
-    constructor(private todoCommunicationService: TodoCommunicationService) {
+    constructor(private todoCommunicationService: TodoCommunicationService, private router: Router) {
         this.todos = this.todoCommunicationService.completedTodos;
     }
 
     onListItemClick(todo: TodoSaveModel) {
-        this.todoCommunicationService.completedTodo.next(todo);
+        this.router.navigate(['/detail', true ,todo._id]);
     }
 }
