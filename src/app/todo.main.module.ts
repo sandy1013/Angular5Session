@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MainRouter } from './todo.main.router';
 
@@ -24,6 +25,7 @@ import { StorageService } from './Shared/Services/todo.storage.service';
 import { TitlePipe } from './Shared/Pipes/todo.title.pipe';
 import { PasswordStrengthDirective } from './Register/Directives/todo.password.directive';
 import { AuthGuard } from './Shared/Guards/todo.auth.gaurd';
+import { ResponseInterceptor } from './Shared/Interceptors/todo.response.interceptor';
 
 
 @NgModule({
@@ -45,10 +47,15 @@ import { AuthGuard } from './Shared/Guards/todo.auth.gaurd';
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MainRouter
   ],
-  providers: [TodoLoggingService, TodoCommunicationService, StorageService, AuthGuard],
+  providers: [TodoLoggingService, TodoCommunicationService, StorageService, AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ResponseInterceptor,
+    multi: true
+  }],
   bootstrap: [MainComponent]
 })
 export class MainModule { }

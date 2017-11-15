@@ -12,14 +12,14 @@ const UserSchema = new Schema({
     username: {
         type: String,
         required: true,
-        unique: true,
+        unique: [true, "{VALUE} is already taken."],
         trim: true,
         minlength: 5
     },
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: [true, "{VALUE} is already taken."],
         trim: true,
         validate : {
             validator: (value) => {
@@ -110,5 +110,43 @@ UserSchema.methods.GenerateToken = function(device) {
        token: token
     }
 };
+
+UserSchema.methods.RemoveToken = function(token, all) {
+    const user = this;
+
+    if (all) {
+        user.tokens = [];
+    } else {
+        var index = user.tokens.findIndex((tokens) => {
+            return tokens.token === token;
+        });
+        
+        if (index > -1) user.tokens.splice(index, 1);
+    }
+
+    return user.save();
+
+};
+
+UserSchema.statics.FindByToken = function(token) {
+    const User = this;
+
+    let decoded;
+    try {
+        decoded = jwt.verify(token, SECRET_KEY);
+    } catch(e) {
+        return Promise.reject();
+    }
+
+    return new Promise((resolve, reject) => {
+        User.findOne({_id: decoded._id}, function(err, user_doc) {
+            if(user_doc) {
+                resolve(user_doc);
+            } else {
+                reject(err);
+            }
+        });
+    });
+}
 
 module.exports = mongoose.model('User', UserSchema);

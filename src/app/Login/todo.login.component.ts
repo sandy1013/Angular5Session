@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
                 email: false
             },
             password: {
-                required: true
+                required: false
             }
         }
     }
@@ -39,21 +39,24 @@ export class LoginComponent implements OnInit {
             'password': [null, [Validators.required]]
         });
 
-        this.loginForm.valueChanges.subscribe(() => {
-            this.validate(this.loginForm);
-        }); 
+        // this.loginForm.valueChanges.subscribe(() => {
+        //     this.validate(this.loginForm);
+        // });
     }
 
     validate(form: FormGroup) {
         this.errors.valid = true;
         this.errors.msg = null;
+        // tslint:disable-next-line:forin
         for (const control in this.errors.controls) {
-            for (const err_type in this.errors.controls[control]) { 
-                if(form.controls[control].errors) {this.errors.valid = false; }
-                try { 
+            // tslint:disable-next-line:forin
+            for (const err_type in this.errors.controls[control]) {
+                if (form.controls[control].errors) {this.errors.valid = false; }
+                try {
                     this.errors.controls[control][err_type] = (form.controls[control].errors[err_type]) ? true : false; 
-                } 
-                catch(e) { this.errors.controls[control][err_type] = false; }
+                }
+                // tslint:disable-next-line:one-line
+                catch (e) { this.errors.controls[control][err_type] = false; }
             }
         }
 
@@ -62,8 +65,8 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
         this.validate(this.loginForm);
-        
-        if(this.loginForm.valid && this.errors.valid) {
+
+        if (this.loginForm.valid && this.errors.valid) {
             this.userDetails.email = this.loginForm.value.email;
             this.userDetails.password = this.loginForm.value.password;
 
@@ -77,14 +80,16 @@ export class LoginComponent implements OnInit {
             .subscribe((response) => {
                 const payload = response.json();
                 const headers = response.headers;
-                if(payload.success) {
-                    this.storage.store('token',headers.get('x-auth'), false);
+                if (payload.success) {
+                    this.storage.store('token', headers.get('x-auth'), false);
                     this.router.navigate(['todo']);
                 }
             }, (err) => {
                 const payload = err.json();
+                this.errors.valid = false;
+                this.errors.msg = payload.err_msg;
                 console.log(payload.err_msg);
-            })
+            });
         }
     }
 }

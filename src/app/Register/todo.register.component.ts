@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
         username: null,
         email: null,
         password: null,
-        cloudsync: false    
+        cloudsync: false
     };
 
     errors = {
@@ -55,12 +55,20 @@ export class RegisterComponent implements OnInit {
             'confirm': [null, [Validators.required]],
             'cloudsync': [false]
         });
+
+        // this.registerForm.valueChanges.subscribe((value) => {
+        //     this.validate(this.registerForm);
+        // }, (error) => {
+        //     console.log(error);
+        // });
     }
 
     validate(form: FormGroup) {
         this.errors.valid = true;
         this.errors.msg = null;
+        // tslint:disable-next-line:forin
         for (const control in this.errors.controls) {
+            // tslint:disable-next-line:forin
             for (const err_type in this.errors.controls[control]) { 
                 if(form.controls[control].errors) {this.errors.valid = false; }
                 try { 
@@ -68,6 +76,11 @@ export class RegisterComponent implements OnInit {
                 } 
                 catch(e) { this.errors.controls[control][err_type] = false; }
             }
+        }
+
+        if (this.registerForm.value.password !== this.registerForm.value.confirm) {
+            this.errors.valid = false;
+            this.errors.msg = "Password don't match, Please verify."
         }
 
         if(!this.errors.valid) { return; }
@@ -94,9 +107,15 @@ export class RegisterComponent implements OnInit {
                 if(response.success) {
                     this.registerForm.reset();
                     this.router.navigate(['login']);
+                } else {
+                    this.errors.valid = false;
+                    this.errors.msg = response.err_msg;
                 }
             }, (error) => {
-                console.log(error);
+                const payload = error.json();
+                this.errors.valid = false;
+                this.errors.msg = payload.err_msg;
+                console.log(payload.err_msg);
             });
         }
     }

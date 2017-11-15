@@ -17,7 +17,7 @@ const mainRoutes: Routes = [
     { path: 'complete', component: CompletedListComponent, canActivate: [AuthGuard]},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    {path:'**', redirectTo:'/todo'}
+    { path: '**', redirectTo: '/todo'}
 ];
 
 @NgModule({
@@ -29,4 +29,3 @@ const mainRoutes: Routes = [
 export class MainRouter {
 
 }
-  
