@@ -20,7 +20,6 @@ import { TodoCommunicationService } from './TodoList/Services/todo.communication
 import { StorageService } from './Shared/Services/todo.storage.service';
 
 import { TitlePipe } from './Shared/Pipes/todo.title.pipe';
-import { PasswordStrengthDirective } from './Register/Directives/todo.password.directive';
 import { AuthGuard } from './Shared/Guards/todo.auth.gaurd';
 import { ResponseInterceptor } from './Shared/Interceptors/todo.response.interceptor';
 
@@ -44,8 +43,8 @@ import { AuthModule } from './AuthModulle/todo.auth.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MainRouter,
-    AuthModule
+    AuthModule,
+    MainRouter
   ],
   providers: [TodoLoggingService, TodoCommunicationService, StorageService, AuthGuard, {
     provide: HTTP_INTERCEPTORS,

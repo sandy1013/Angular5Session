@@ -5,10 +5,9 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { RegisterComponent } from '../Register/todo.register.component';
-import { LoginComponent } from '../Login/todo.login.component';
-
-import { PasswordStrengthDirective } from '../Register/Directives/todo.password.directive';
+import { RegisterComponent } from './Register/todo.register.component';
+import { LoginComponent } from './Login/todo.login.component';
+import { PasswordStrengthDirective } from './Register/Directives/todo.password.directive';
 
 const mainRoutes: Routes = [
     { path: 'login', component: LoginComponent},
