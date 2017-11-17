@@ -14,7 +14,7 @@ export class TodoEditorComponent implements OnInit {
 
     constructor(private todoCommunicationService: TodoCommunicationService) {
         this.errors = {
-            valid: false,
+            valid: true,
             message: null,
             controls: {
                 title: {
@@ -72,7 +72,7 @@ export class TodoEditorComponent implements OnInit {
             }
         }
 
-        if (!this.todoForm.valid) { return; }
+        if (this.todoForm.valid) { return true; } else { return false;}
     }
 
     onTodoSubmit() {

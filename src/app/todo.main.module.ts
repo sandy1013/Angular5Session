@@ -24,6 +24,7 @@ import { AuthGuard } from './Shared/Guards/todo.auth.gaurd';
 import { ResponseInterceptor } from './Shared/Interceptors/todo.response.interceptor';
 
 import { AuthModule } from './AuthModulle/todo.auth.module';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AuthModule } from './AuthModulle/todo.auth.module';
     IfNotDirective,
     CompletedListComponent,
     TodoDetailComponent,
-    TitlePipe
+    TitlePipe,
+    TestComponent
   ],
   imports: [
     BrowserModule,
